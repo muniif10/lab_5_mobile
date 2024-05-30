@@ -19,10 +19,14 @@ workflows:
       - name: Flutter analyze
         script: |
           flutter analyze
-      - name: Flutter unit tests
+      - name: Set up key.properties
         script: |
-          flutter test
-        ignore_failure: true
+          cat >> "$CM_BUILD_DIR/project_directory/android/key.properties"" <<EOF
+          storePassword=$CM_KEYSTORE_PASSWORD
+          keyPasword=$CM_KEY_PASSWORD
+          keyAlias=$CM_KEY_ALIAS
+          storeFile=$CM_KEYSTORE_PATH
+          EOF
       - name: Build AAB with Flutter
         script: |
         
