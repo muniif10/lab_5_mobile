@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lab_5_mobile/home_page.dart';
@@ -34,7 +36,7 @@ class InvitedListWidget extends StatelessWidget {
       child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
             color: Colors.grey[200]),
         child: Stack(
           alignment: Alignment.bottomRight,
@@ -46,19 +48,35 @@ class InvitedListWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      child: Column(
+                      height: 100,
+                      width: 400,
+                      margin: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(5),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Colors.white,
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                spreadRadius: 1,
+                                offset: Offset(0, 1))
+                          ]),
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("Michael Yakson", style: TextStyle(fontSize: 20)),
                           Text("+6012315134", style: TextStyle(fontSize: 20))
                         ],
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
                       ),
+                    ),
+                    Container(
                       height: 100,
                       width: 400,
-                      margin: EdgeInsets.all(10),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
+                      margin: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(5),
+                      decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           color: Colors.white,
                           boxShadow: <BoxShadow>[
@@ -68,30 +86,14 @@ class InvitedListWidget extends StatelessWidget {
                                 spreadRadius: 1,
                                 offset: Offset(0, 1))
                           ]),
-                    ),
-                    Container(
-                      child: Column(
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("Ayasofya", style: TextStyle(fontSize: 20)),
                           Text("+6012315531", style: TextStyle(fontSize: 20))
                         ],
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
                       ),
-                      height: 100,
-                      width: 400,
-                      margin: EdgeInsets.all(10),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Colors.white,
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 5,
-                                spreadRadius: 1,
-                                offset: Offset(0, 1))
-                          ]),
                     ),
                   ],
                 ),
@@ -107,7 +109,7 @@ class InvitedListWidget extends StatelessWidget {
                     ),
                   ));
                 },
-                child: Icon(Icons.add),
+                child: const Icon(Icons.add),
               ),
             )
           ],
@@ -122,7 +124,7 @@ class InvitePage extends StatelessWidget {
   int title;
   @override
   Widget build(BuildContext context) {
-    Future<void> _showMyDialog() async {
+    Future<void> showMyDialog() async {
       return showDialog<void>(
         context: context,
         barrierDismissible: true,
@@ -155,19 +157,21 @@ class InvitePage extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Text("Factory $title"),
-          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.settings))],
+          actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.settings))],
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "Invitation",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
               ),
-              Text("Invite users",
+              const Text("Invite users",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Padding(
@@ -176,16 +180,16 @@ class InvitePage extends StatelessWidget {
                         horizontal: MediaQuery.of(context).size.width * 0.1)
                     : EdgeInsets.symmetric(
                         horizontal: MediaQuery.of(context).size.width * 0.07),
-                child: Align(
+                child: const Align(
+                  alignment: Alignment.centerLeft,
                   child: Text(
                     "Owner's Name",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     textAlign: TextAlign.start,
                   ),
-                  alignment: Alignment.centerLeft,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Padding(
@@ -195,17 +199,17 @@ class InvitePage extends StatelessWidget {
                     : EdgeInsets.symmetric(
                         horizontal: MediaQuery.of(context).size.width * 0.07),
                 child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: TextField(
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Enter name here"),
                     ),
                   ),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
                 ),
               ),
               Padding(
@@ -214,16 +218,16 @@ class InvitePage extends StatelessWidget {
                         horizontal: MediaQuery.of(context).size.width * 0.1)
                     : EdgeInsets.symmetric(
                         horizontal: MediaQuery.of(context).size.width * 0.07),
-                child: Align(
+                child: const Align(
+                  alignment: Alignment.centerLeft,
                   child: Text(
                     "Owner's Phone Number",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     textAlign: TextAlign.start,
                   ),
-                  alignment: Alignment.centerLeft,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Padding(
@@ -233,8 +237,11 @@ class InvitePage extends StatelessWidget {
                     : EdgeInsets.symmetric(
                         horizontal: MediaQuery.of(context).size.width * 0.07),
                 child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: TextField(
                       decoration: InputDecoration(
                         prefixIcon: Padding(
@@ -244,9 +251,6 @@ class InvitePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
                 ),
               ),
               Padding(
@@ -257,17 +261,17 @@ class InvitePage extends StatelessWidget {
                         horizontal: MediaQuery.of(context).size.width * 0.07),
                 child: Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 60,
                     ),
                     Expanded(
                         child: ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).pop();
-                              _showMyDialog();
+                              showMyDialog();
                             },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Text("Submit",
                                   style: TextStyle(fontSize: 20)),
                             ))),
@@ -275,8 +279,6 @@ class InvitePage extends StatelessWidget {
                 ),
               )
             ],
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
           ),
         ),
       ),

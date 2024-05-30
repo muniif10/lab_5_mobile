@@ -1,7 +1,8 @@
+// ignore_for_file: must_be_immutable, non_constant_identifier_names
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lab_5_mobile/bloc/selected_view_bloc.dart';
 import 'package:lab_5_mobile/engineer_view.dart';
@@ -25,16 +26,16 @@ class GaugeOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15)),
         color: Colors.white,
       ),
       child: Column(
         children: [
           Text(
-            "$title",
+            title,
             textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             textScaler: TextScaler.linear(ScaleSize.textScaleFactor(context)),
           ),
           Expanded(
@@ -53,13 +54,12 @@ class GaugeOne extends StatelessWidget {
                   )
                 ], annotations: <GaugeAnnotation>[
                   GaugeAnnotation(
-                      widget: Container(
-                          child: Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Text('$value_data $unit',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)),
-                      )),
+                      widget: Padding(
+                                              padding: const EdgeInsets.only(top: 10),
+                                              child: Text('$value_data $unit',
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold)),
+                                            ),
                       angle: 90,
                       positionFactor: 1)
                 ])
@@ -131,7 +131,7 @@ class Home extends StatelessWidget {
                 }
               },
               currentIndex: state,
-              items: [
+              items: const [
                 BottomNavigationBarItem(
                     icon: Icon(
                       Icons.person,
@@ -160,7 +160,7 @@ class Home extends StatelessWidget {
             if (state == 1) {
               return Center(
                 child: Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -171,7 +171,7 @@ class Home extends StatelessWidget {
                             clipBehavior: Clip.antiAlias,
                             decoration: BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
+                                    const BorderRadius.all(Radius.circular(10)),
                                 color: Colors.grey[200]),
                             child: BlocBuilder<FactorySelectionBloc, int>(
                               builder: (context, state) {
@@ -199,7 +199,7 @@ class Home extends StatelessWidget {
                                                     400
                                                 ? 2
                                                 : 1,
-                                        padding: EdgeInsets.all(10),
+                                        padding: const EdgeInsets.all(10),
                                         children: [
                                           GaugeOne(
                                             value_data: state == 2
@@ -232,7 +232,7 @@ class Home extends StatelessWidget {
                                       ),
                                     ),
                                     Text(state == 2
-                                        ? "${DateTime.now().toString().substring(0, 19)}"
+                                        ? DateTime.now().toString().substring(0, 19)
                                         : "--:--")
                                   ],
                                 );
@@ -261,12 +261,12 @@ class Home extends StatelessWidget {
                                               8.0),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius: const BorderRadius.all(
                                                 Radius.circular(10)),
                                             color: Colors.grey[100],
                                             boxShadow: factory_selection == 1
                                                 ? <BoxShadow>[
-                                                    BoxShadow(
+                                                    const BoxShadow(
                                                         color: Colors.blue,
                                                         blurRadius: 5,
                                                         spreadRadius: 0,
@@ -281,7 +281,7 @@ class Home extends StatelessWidget {
                                                       .height *
                                                   0.001 *
                                                   20.0),
-                                          child: Column(
+                                          child: const Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
@@ -308,12 +308,12 @@ class Home extends StatelessWidget {
                                               8.0),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius: const BorderRadius.all(
                                                 Radius.circular(10)),
                                             color: Colors.grey[100],
                                             boxShadow: factory_selection == 2
                                                 ? <BoxShadow>[
-                                                    BoxShadow(
+                                                    const BoxShadow(
                                                         color: Colors.blue,
                                                         blurRadius: 5,
                                                         spreadRadius: 0,
@@ -328,7 +328,7 @@ class Home extends StatelessWidget {
                                                       .height *
                                                   0.001 *
                                                   20.0),
-                                          child: Column(
+                                          child: const Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
@@ -354,9 +354,9 @@ class Home extends StatelessWidget {
               );
             } else {
               if (state == 0) {
-                return EngineerView();
+                return const EngineerView();
               } else {
-                return SettingView();
+                return const SettingView();
               }
             }
           },
@@ -373,13 +373,13 @@ class SettingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _controller1 = TextEditingController(text: "2412");
-    final _controller2 = TextEditingController(text: "412");
-    final _controller3 = TextEditingController(text: "133");
-    final _controller4 = TextEditingController(text: "412");
+    final controller1 = TextEditingController(text: "2412");
+    final controller2 = TextEditingController(text: "412");
+    final controller3 = TextEditingController(text: "133");
+    final controller4 = TextEditingController(text: "412");
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -389,7 +389,7 @@ class SettingView extends StatelessWidget {
                 child: Container(
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
                       color: Colors.grey[200]),
                   child: BlocBuilder<FactorySelectionBloc, int>(
                     builder: (context, state) {
@@ -398,8 +398,8 @@ class SettingView extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text("Minimums"),
-                            SizedBox(
+                            const Text("Minimums"),
+                            const SizedBox(
                               height: 20,
                             ),
                             Expanded(
@@ -409,9 +409,9 @@ class SettingView extends StatelessWidget {
                                   Center(
                                     child: Column(
                                       children: [
-                                        Text("Steam Pressure"),
+                                        const Text("Steam Pressure"),
                                         TextField(
-                                          controller: _controller1,
+                                          controller: controller1,
                                         ),
                                       ],
                                     ),
@@ -419,10 +419,10 @@ class SettingView extends StatelessWidget {
                                   Center(
                                     child: Column(
                                       children: [
-                                        Text("Steam Flow"),
+                                        const Text("Steam Flow"),
                                         TextField(
-                                          controller: _controller2,
-                                          decoration: InputDecoration(),
+                                          controller: controller2,
+                                          decoration: const InputDecoration(),
                                         ),
                                       ],
                                     ),
@@ -430,9 +430,9 @@ class SettingView extends StatelessWidget {
                                   Center(
                                     child: Column(
                                       children: [
-                                        Text("Power Frequency"),
+                                        const Text("Power Frequency"),
                                         TextField(
-                                          controller: _controller3,
+                                          controller: controller3,
                                         ),
                                       ],
                                     ),
@@ -440,9 +440,9 @@ class SettingView extends StatelessWidget {
                                   Center(
                                     child: Column(
                                       children: [
-                                        Text("Water Level"),
+                                        const Text("Water Level"),
                                         TextField(
-                                          controller: _controller4,
+                                          controller: controller4,
                                         ),
                                       ],
                                     ),
@@ -479,11 +479,11 @@ class SettingView extends StatelessWidget {
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                      const BorderRadius.all(Radius.circular(10)),
                                   color: Colors.grey[100],
                                   boxShadow: factory_selection == 1
                                       ? <BoxShadow>[
-                                          BoxShadow(
+                                          const BoxShadow(
                                               color: Colors.blue,
                                               blurRadius: 5,
                                               spreadRadius: 0,
@@ -495,7 +495,7 @@ class SettingView extends StatelessWidget {
                                     MediaQuery.of(context).size.height *
                                         0.001 *
                                         20.0),
-                                child: Column(
+                                child: const Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(Icons.factory_rounded),
@@ -521,11 +521,11 @@ class SettingView extends StatelessWidget {
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                      const BorderRadius.all(Radius.circular(10)),
                                   color: Colors.grey[100],
                                   boxShadow: factory_selection == 2
                                       ? <BoxShadow>[
-                                          BoxShadow(
+                                          const BoxShadow(
                                               color: Colors.blue,
                                               blurRadius: 5,
                                               spreadRadius: 0,
@@ -537,7 +537,7 @@ class SettingView extends StatelessWidget {
                                     MediaQuery.of(context).size.height *
                                         0.001 *
                                         20.0),
-                                child: Column(
+                                child: const Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(Icons.factory_rounded),

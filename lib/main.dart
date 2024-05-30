@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lab_5_mobile/bloc/logged_in_bloc.dart';
-import 'package:lab_5_mobile/bloc/selected_view_bloc.dart';
 import 'package:lab_5_mobile/home_page.dart';
 
 void main() {
-  runApp(MainApp());
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -20,6 +18,7 @@ class MainApp extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class LoginScreen extends StatefulWidget {
   bool isLogged = false;
 
@@ -40,9 +39,9 @@ class _LoginScreenState extends State<LoginScreen> {
               return BlocBuilder<LoggedInBloc, bool>(
                 builder: (context, state) {
                   if (state == false) {
-                    return LoginView();
+                    return const LoginView();
                   } else {
-                    return PushToHome();
+                    return const PushToHome();
                   }
                 },
               );
@@ -53,6 +52,8 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 class LoginView extends StatefulWidget {
+  const LoginView({super.key});
+
   @override
   State<LoginView> createState() => _LoginViewState();
 }
@@ -79,18 +80,20 @@ class _LoginViewState extends State<LoginView> {
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(15))),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Welcome!",
+              const Text("Welcome!",
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900)),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               submitted
                   ? Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                           boxShadow: <BoxShadow>[
@@ -103,16 +106,16 @@ class _LoginViewState extends State<LoginView> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: [
-                            Text(
+                            const Text(
                                 "Enter the activation code sent to your phone."),
                             TextField(
                               controller: otp,
                               decoration:
-                                  InputDecoration(hintText: "Enter code here"),
+                                  const InputDecoration(hintText: "Enter code here"),
                             ),
                             Text(
                               "${otp.text.length}/6",
-                              style: TextStyle(fontSize: 11),
+                              style: const TextStyle(fontSize: 11),
                             ),
                             ElevatedButton(
                                 onPressed: () {
@@ -120,12 +123,12 @@ class _LoginViewState extends State<LoginView> {
                                       .read<LoggedInBloc>()
                                       .add(LogInEvent());
                                 },
-                                child: Text("Activate")),
+                                child: const Text("Activate")),
                           ],
                         ),
                       ))
                   : Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                           boxShadow: <BoxShadow>[
@@ -138,9 +141,9 @@ class _LoginViewState extends State<LoginView> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: [
-                            Text(
+                            const Text(
                                 "Enter your phone number to activate your account."),
-                            TextField(
+                            const TextField(
                               decoration: InputDecoration(
                                   hintText: "Enter your phone number."),
                             ),
@@ -156,7 +159,7 @@ class _LoginViewState extends State<LoginView> {
                                         },
                                       );
                                     }),
-                                Text("Agree to terms and Services")
+                                const Text("Agree to terms and Services")
                               ],
                             ),
                             ElevatedButton(
@@ -165,13 +168,11 @@ class _LoginViewState extends State<LoginView> {
                                     () => submitted = true,
                                   );
                                 },
-                                child: Text("Get Activation Code")),
+                                child: const Text("Get Activation Code")),
                           ],
                         ),
                       )),
             ],
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
           ),
         ),
       ),
@@ -195,8 +196,9 @@ class _PushToHomeState extends State<PushToHome> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(seconds: 3));
       if (context.mounted) {
+        // ignore: use_build_context_synchronously
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => Home(),
+          builder: (context) => const Home(),
         ));
       }
     });
@@ -204,7 +206,7 @@ class _PushToHomeState extends State<PushToHome> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
         body: Center(
             child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
