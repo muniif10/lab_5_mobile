@@ -30,10 +30,10 @@ workflows:
       - name: Build AAB with Flutter
         script: |
         
-          flutter build appbundle --release \
+          flutter build apk --split-per-abi --release \
             --build-name=1.0.1 \
             --build-number=1
     artifacts:
-      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/*.apk
       - build/**/outputs/**/mapping.txt
       - flutter_drive.log
