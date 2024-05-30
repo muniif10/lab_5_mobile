@@ -37,3 +37,10 @@ workflows:
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/mapping.txt
       - flutter_drive.log
+    publishing:
+      email:
+        recipients:
+        - daniel_hafiz@upm.edu.my
+        notify:
+          success: true # To not receive a notification when a build succeeds
+          failure: false # To not receive a notification when a build fai
